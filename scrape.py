@@ -26,7 +26,15 @@ else:
     g=open(f"{output}","w")
     for i in s:
         if (domain in i.text) and not("*" in i.text) and not("Match: ILIKE" in i.text):
-            print(i.text)
-            g.write(f"{i.text}\n")
+            if i.text.count(".com") > 1:
+                string=i.text
+                string=string.replace(".com",".com&",100)
+                string=string.split("&")
+                for i in string:
+                    if i!='':
+                        print(i)    
+            else:
+                print(i.text)
+            # g.write(f"{i.text}\n")
     g.close()
         
